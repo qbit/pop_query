@@ -1,0 +1,5 @@
+for z in $( ls *.zip ); do 
+  unzip $z; 
+  shp2pgsql -a -W LATIN1 $( ls *.shp) population >> population.sql #| ssh -C user@host 'sh -c "cat - >> ~/population.sql"';
+  rm *.{dbf,shp,shp.xml,shx}
+done

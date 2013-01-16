@@ -11,5 +11,8 @@
     "population"
   ],
   "author": "Aaron Bieber <deftly@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "pg": "~0.11.1"
+  }
 }
