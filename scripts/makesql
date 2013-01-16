@@ -1,5 +1,8 @@
 for z in $( ls *.zip ); do 
   unzip $z; 
+  if [ -e tabblock2010_01_pophu.shp ]; then
+    shp2pgsql -p -W LATIN1 tabblock2010_01_pophu.shp population
+  fi
   shp2pgsql -a -W LATIN1 $( ls *.shp) population >> population.sql #| ssh -C user@host 'sh -c "cat - >> ~/population.sql"';
-  rm *.{dbf,shp,shp.xml,shx}
+  rm *.{dbf,prj,shp,shp.xml,shx};
 done
