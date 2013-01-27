@@ -12,10 +12,18 @@ server = http.createServer( function( req, res ) {
   });
 
   req.on( 'end', function() {
-    console.log( data.join( '' ).toString() );
+    var geoj = JSON.parse( data.join( '' ).toString() );
 
     // pass the majobber back to postgres and do an ST_Contains kinda
     // query - pass back awesomesauce
+    geoj.features.forEach( feat, idx ) {
+      feat.properties = feat.properties || {};
+
+      if ( feat.properties.population ) {
+        feat.properties.population = 0;
+      }
+    });
+
     
     res.writeHead( 200, { 'Content-Type': 'applicatoin/json' } );
     res.end( JSON.stringify({}) );
